@@ -23,8 +23,19 @@ def printBoard(board):
 
 #this function is check is board full or not 
 def isBoardFull(board): #here we use board value, becouse we use it only when the board is full
+
     if board.count(' ') > 1: #tutaj wywołujemy funkcję, która sprawdza dokładną ilość czegoś
         # w naszym przypadku sprawdza ona czy w tablicy są puste przestrzenie
         return False #to jest przypadek, gdy tablica nie jest pełna
     else:
         return True #to jest przypadek, gdy tablica jest pełna
+
+def IsWinner(b,l):
+    return (b[1] == l and b[2] == l and b[3] == l) or  #l is x/o, l=letter
+    (b[4] == l and b[5] == l and b[6] == l) or 
+    (b[7] == l and b[8] == l and b[9] == l) or 
+    (b[1] == l and b[4] == l and b[7] == l) or
+    (b[2] == l and b[5] == l and b[8] == l) or
+    (b[3] == l and b[6] == l and b[9] == l) or 
+    (b[1] == l and b[5] == l and b[9] == l) or
+    (b[3] == l and b[5] == l and b[7] == l)
