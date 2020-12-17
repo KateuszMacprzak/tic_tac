@@ -23,7 +23,7 @@ def printBoard(board):
     print(' '+board[7]+' | '+board[8]+' | '+board[9])
     print('   |   |   ')
 
-#this function is check is board full or not 
+#this function is check that board is full or not 
 def isBoardFull(board): #here we use board value, becouse we use it only when the board is full
 
     if board.count(' ') > 1: #tutaj wywołujemy funkcję, która sprawdza dokładną ilość czegoś
@@ -33,14 +33,14 @@ def isBoardFull(board): #here we use board value, becouse we use it only when th
         return True #to jest przypadek, gdy tablica jest pełna
 
 def IsWinner(b,l):
-    return (b[1] == l and b[2] == l and b[3] == l) or  #l is x/o, l=letter
+    return ((b[1] == l and b[2] == l and b[3] == l) or  #l is x/o, l=letter
     (b[4] == l and b[5] == l and b[6] == l) or 
     (b[7] == l and b[8] == l and b[9] == l) or 
     (b[1] == l and b[4] == l and b[7] == l) or
     (b[2] == l and b[5] == l and b[8] == l) or
     (b[3] == l and b[6] == l and b[9] == l) or 
     (b[1] == l and b[5] == l and b[9] == l) or
-    (b[3] == l and b[5] == l and b[7] == l)
+    (b[3] == l and b[5] == l and b[7] == l))
 
 def playerMove():
     run = True 
@@ -91,3 +91,8 @@ def computerMove():
         move = selectRandom(edgesOpen) #wtedy ruch jest losdowo wybierany z narożników
         return move #tutaj jest on zwracany 
 
+def selectRandom(li): #definicja funkcji selectRandom, którą to wykorzystujemy w funkcji computerMove
+    import random  #importowanie funkcji random 
+    ln =len(li)  #zmienna ln, która jest równa długości listy
+    r=random.randrange(0,ln) #wprowadzanie zmiennej r, która losuje zmienną z zakresu 0 do długości listy
+    return li[r] #tutaj zwraca się losowana liczba z listy
