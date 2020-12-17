@@ -32,7 +32,7 @@ def isBoardFull(board): #here we use board value, becouse we use it only when th
     else:
         return True #to jest przypadek, gdy tablica jest pełna
 
-def IsWinner(b,l):
+def IsWinner(b,l): #in l we have two options- 'X' and 'O'
     return ((b[1] == l and b[2] == l and b[3] == l) or  #l is x/o, l=letter
     (b[4] == l and b[5] == l and b[6] == l) or 
     (b[7] == l and b[8] == l and b[9] == l) or 
@@ -96,3 +96,30 @@ def selectRandom(li): #definicja funkcji selectRandom, którą to wykorzystujemy
     ln =len(li)  #zmienna ln, która jest równa długości listy
     r=random.randrange(0,ln) #wprowadzanie zmiennej r, która losuje zmienną z zakresu 0 do długości listy
     return li[r] #tutaj zwraca się losowana liczba z listy
+
+def main ():
+    print ("Welcome to the game!") #powitanie użytkownika w programie
+    printBoard(board)
+
+    while not(isBoardFull(board)): #dopóki tablica nie jest pełna, zmienna jest tutaj board
+        if not (IsWinner(board, 'O')): #pierwsza zmienna to tablica, a druga to O- w naszym przypadku jest ona przypisana do komputera
+            playerMove() #wtedy uzykownik dostaje szanse ruchu
+            printBoard(board) #system pokazuje zaaktualizowaną tablicę
+        else: #else mean that computer win, bcs we get false in this condition
+            print('Sorry, you loose!') 
+        if not (IsWinner(board,'X')):
+            move=computerMove()
+            if move ==0: #this is the result which we get, when computer doesn't have any move more
+                print('Tie game') 
+            else:
+                insertLetter('O',move)
+                print('Computer placed an O on position ', move, ':')
+                printBoard(board)
+        else:
+            print('You win!')
+            break 
+
+
+
+    if isBoardFull(board):
+        print("Tie game") #this is about situation when the board is full
