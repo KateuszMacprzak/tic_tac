@@ -123,3 +123,69 @@ def main ():
 
     if isBoardFull(board):
         print("Tie game") #this is about situation when the board is full
+
+while True:
+    x=input('Do you want to play again ? (y/n)')
+    if x.lower()=='y':
+        board=['  ' for x in range(10)]
+        print('----------------------')
+        main()
+    else:
+        break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
