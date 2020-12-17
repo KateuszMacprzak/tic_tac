@@ -59,3 +59,35 @@ def playerMove():
         except:
             print('Please type a number')  #to się dzieję, gdy użytkownik wpiszę słowa zamiast liczb
 
+def computerMove():
+    possibleMoves = [x for x, letter in enumerate(board) if letter == ' ' and x!=0 ] #jeżeli te warunki są spełnione, funkcja enumerate wstawia ruch komputera w pustą pozycję, i jest różna od 0(gdyż ta liczba może być w zasięgu)
+    move = 0
+
+    for let in ['O', 'X']: #here we checking by taking variable by 'let' and that's perform a list in which we have two elements-'O' and 'X'
+        for i in possibleMoves: 
+            boardcopy = board[:] #to jest wyświetlenie ostatniego ruchu lub na początku pustej tablicy
+            boardcopy[i]=let #and here we update list in this particular location
+            if IsWinner(boardcopy, let):
+                move=i
+                return move
+    #_________SZTUCZNA INTELIGENCJA KOMPUTERA_____________            
+    cornersOpen=[] #nazwa listy, tutaj zapisują się narożniki
+    for i in possibleMoves: #dla każdego z możliwych ruchów do wykonania
+        if i in [1, 3, 7, 9]: #jeżeli element jest w pozycjach 1,3,7,9
+            cornersOpen.append(i) #wtedy komputer dodaje możliwość ruchu do listy
+    if len(cornersOpen) > 0: #system sprawdza czy jest jakaś możliwość w tym zakresie, w tym przypadku są to narożniki
+        move = selectRandom(cornersOpen) #tutaj jest losowy wybór z tych pozycji wskazanych wyżej
+        return move #zwraca tę wartość jako move
+    
+    if 5 in possibleMoves: #jeżeli pozycja numer 5 jest w możliwościach
+        move = 5 #wtedy ruch będzie jako 5
+        return move #i tutaj się zwraca
+    
+    edgesOpen = [] #pusta lista dla krawędzi 
+    for i in possibleMoves: 
+        if i in [2,4,6,8]: #jeżeli pusta przestrzeń jest w możliwych, pustych pozycjach 
+            edgesOpen.append(i) #wtedy do listy możliwych ruchów dodaje się pustą pozycję
+    if len(edgesOpen) > 0: #system sprawdza czy jest jakaś możliwość w tym zakresie, w tym przypadku są to krawędzie
+        move = selectRandom(edgesOpen) #wtedy ruch jest losdowo wybierany z narożników
+        return move #tutaj jest on zwracany 
+
